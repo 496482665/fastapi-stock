@@ -11,7 +11,8 @@
 from tortoise import run_async
 
 from db.stock import BaseMarketDailyData, StockMarketActivity
-from utils.basic_data import basic_stock_market_data, get_stock_market_activity_legu
+from utils.basic_data import basic_stock_market_data
+from utils.daily_data import get_stock_market_activity_legu
 
 
 # 保存每日股市数据

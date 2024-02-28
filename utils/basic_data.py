@@ -125,30 +125,11 @@ def get_stock_account_statistics(fetch: bool = False):
     return stock_account_statistics_em_df.to_dict("records")
 
 
-# 获取赚钱效应
-def get_stock_market_activity_legu(fetch: bool = False):
-    stock_market_activity_legu_df = ak.stock_market_activity_legu()
+# 股市量价齐升指数
+def get_stock_rank():
+    """
 
-    # 需要修改列名时使用
-    def fetch_columns(x):
-        x_map = {
-            "上涨": "rise",
-            "涨停": "rise_limit",
-            "真实涨停": "rise_limit_real",
-            "st st*涨停": "rise_limit_st",
-            "下跌": "fall",
-            "跌停": "fall_limit",
-            "真实跌停": "fall_limit_real",
-            "st st*跌停": "fall_limit_st",
-            "平盘": "zero",
-            "停牌": "stop",
-            "活跃度": "activity",
-            "统计日期": "date"
-        }
-
-        return x_map[x]
-
-    if fetch:
-        stock_market_activity_legu_df["item"] = stock_market_activity_legu_df["item"].apply(fetch_columns)
-
-    return stock_market_activity_legu_df.to_dict("records")
+    :return:
+    """
+    stock_rank_ljqs_ths_df = ak.stock_rank_ljqs_ths()
+    return stock_rank_ljqs_ths_df

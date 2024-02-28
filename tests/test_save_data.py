@@ -15,6 +15,6 @@ from core.schedules.basic_data import save_base_market_daily_data,save_stock_mar
 from initlize.db import init_db, close_db
 
 run_async(init_db())
-# run_async(save_base_market_daily_data())
+run_async(save_base_market_daily_data())
 run_async(save_stock_market_activity())
 run_async(close_db())
