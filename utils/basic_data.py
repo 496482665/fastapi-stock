@@ -133,3 +133,9 @@ def get_stock_rank():
     """
     stock_rank_ljqs_ths_df = ak.stock_rank_ljqs_ths()
     return stock_rank_ljqs_ths_df
+
+
+# 获取所有A股股票代码
+def get_all_company_code():
+    stock_info_a_code_name_df = ak.stock_info_a_code_name()
+    return stock_info_a_code_name_df.to_dict("records")

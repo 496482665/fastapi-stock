@@ -8,6 +8,7 @@
   ---------------------------------------
   @desc: stock => stock.py
 """
+from utils.constant import EMPTY_STRING, LEN_LONG, LEN_NORMAL
 from .base import BaseModel
 
 import datetime
@@ -28,7 +29,7 @@ class BaseMarketDailyData(BaseModel):
 
 # 投资者数量变化概况
 class StockAccountAnalyse(BaseModel):
-    date = fields.CharField(default="", description="月份", max_length=255)
+    date = fields.CharField(default="", description="月份", max_length=LEN_LONG)
     add_number = fields.FloatField(description="新增投资者-数量")
     total_number = fields.FloatField(description="期末投资者-总量")
     total_number_a = fields.FloatField(description="期末投资者-A股账户")
@@ -55,7 +56,16 @@ class StockMarketActivity(BaseModel):
     fall_limit_st = fields.FloatField(description="st*跌停")
     zero = fields.FloatField(description="平盘")
     stop = fields.FloatField(description="停牌")
-    activity = fields.CharField(description="活跃度", default="0%", max_length=255)
+    activity = fields.CharField(description="活跃度", default="0%", max_length=LEN_LONG)
 
     class Meta:
         table = "stock_market_activity"
+
+
+# A股上市公司代码
+class CompanyCode(BaseModel):
+    code = fields.CharField(description="股票代码", max_length=LEN_NORMAL, default=EMPTY_STRING)
+    name = fields.CharField(description="股票名称", max_length=LEN_NORMAL, default=EMPTY_STRING)
+
+    class Meta:
+        table = "company_code"

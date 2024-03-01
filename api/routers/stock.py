@@ -10,9 +10,8 @@
 """
 from fastapi import APIRouter, Query
 
-from db.stock import StockAccountAnalyse
+from initlize.db import init_stock_basic_data
 from utils import basic_data, daily_data
-from utils.basic_data import get_stock_account_statistics
 from services.stock import get_stock_rank_logic
 
 router = APIRouter()
@@ -42,17 +41,9 @@ async def get_basic_data(stock_code: str):
     return daily_data.get_stock_daily_data(stock_code)
 
 
-@router.get("/stock_account_storage", summary="存储股票市场投资者数量数据")
+@router.get("/init_stock_basic_data", summary="初始化存储股市基本数据")
 async def test():
-    # 第一次启动时，初始化基础数据
-    account_statistics = get_stock_account_statistics(fetch=True)
-
-    model_list = []
-    for account_data in account_statistics:
-        model_list.append(StockAccountAnalyse(**account_data))
-
-    await StockAccountAnalyse.all().delete()
-    await StockAccountAnalyse.bulk_create(model_list)
+    await init_stock_basic_data()
 
 
 @router.get("/company_dynamic/{date}", summary="获取某日的股市公司动态")

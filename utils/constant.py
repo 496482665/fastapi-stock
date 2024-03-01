@@ -9,3 +9,5 @@
   @desc: 机器学习 => constant.py
 """
 LEN_LONG = 255
+LEN_NORMAL = 64
+EMPTY_STRING = ""
